@@ -15,38 +15,37 @@ import TextField from '@mui/material/TextField';
 import { useRouter } from "next/navigation";
 
 export default function Home() {
-  const notifExists = false;
-  const numOfNotifs = 0;
+  const [notifExists, setNE] = useState(false);
+  const [numOfNotifs, setNoN] = useState(0);
   const [uID, setuID] = useState("none"); 
   const router = useRouter();
   
-    /*{
-      const getNotifs = async () =>{
+  useEffect(() => {
+    const checkNotifs = async () => {
       const response = await fetch('/api/homePageStart', {
-        method:'POST',
-        headers: {
-          'Content-Type':'application/json',
-        },
-        body:uID,
-      })
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      });
 
-      if(response.ok){
-        const results = response.json();
-      }
-      if(results.type == "error"){
-        console.log(error);
-      }else{
+      if (!response.ok) throw new Error('Failed to fetch notifications');
+
+      const results = await response.json();
+
+      if (type === 'error') throw new Error(content);
+      else{
         const resultarr = results.split(",");
         if(resultarr[0] == "true"){
-            notifExists = true;
-            numOfNotifs = resultarr[1];
+            setNE(true);
+            setNoN(resultarr[1]);
         }else{
-          notifExists = false;
+          setNE(false);
         }
       }
-    }
-    }
-  })*/
+    };
+    checkNotifs();
+},[]
+)
+
 
   let ws;
   if(ws){
@@ -56,7 +55,7 @@ export default function Home() {
   ws = new WebSocket("https://websocket-database-pinging-production.up.railway.app");
 
 ws.onopen = () => {
-  console.log("Connected");
+  console.log("Connected TO WEBSOCKET SERVER");
   ws.send("Hello,start,connect");
 }
 
@@ -76,7 +75,7 @@ ws.onclose = () => {
     
 return (
   <Box sx={{width:"100vw", height:"100vh"}} justifyContent={"space-around"}>
-  <AppBar position="static"  color="white" sx={{width:"80vw",left:"10vw"}} px={4} >
+  <AppBar position="static"  color="white"  px={4} >
     <Stack direction="row" justifyContent={"space-between"} alignItems={"center"} >
     <Typography >CSS</Typography>
     <Stack direction="row">
@@ -84,7 +83,7 @@ return (
       <Button variant="text"><SearchSharpIcon/></Button>
       <Button variant="text"><MessageSharpIcon/></Button>
       <Badge badgeContent={numOfNotifs} color="primary">
-        <Button variant="text">(notifExists?<NotificationsSharpIcon/>:<NotificationsNoneSharpIcon/>)</Button>
+        <Button variant="text">{(notifExists?<NotificationsSharpIcon/>:<NotificationsNoneSharpIcon/>)}</Button>
       </Badge>
       <Button variant="text"><AccountCircleIcon/></Button>
     </Stack>
