@@ -13,7 +13,6 @@ import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import TextField from '@mui/material/TextField';
 import { useRouter } from "next/navigation";
-import { cookies } from "next/headers";
 
 export default function Home() {
   const notifExists = false;
