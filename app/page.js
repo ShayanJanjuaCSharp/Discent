@@ -20,14 +20,8 @@ export default function Home() {
   const numOfNotifs = 0;
   const [uID, setuID] = useState("none"); 
   const router = useRouter();
-  const bakery = cookies();
-
-  useEffect(() =>{
-    setuID(bakery.get("userID"));
-
-    if(uID=="none"){
-      notifExists = false;
-    }else{
+  
+    /*{
       const getNotifs = async () =>{
       const response = await fetch('/api/homePageStart', {
         method:'POST',
@@ -53,7 +47,7 @@ export default function Home() {
       }
     }
     }
-  })
+  })*/
 
   let ws;
   if(ws){
