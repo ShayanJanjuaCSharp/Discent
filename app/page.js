@@ -30,8 +30,9 @@ export default function Home() {
       if (!response.ok) throw new Error('Failed to fetch notifications');
 
       const results = await response.json();
+      const type = results.type;
 
-      if (type === 'error') throw new Error(content);
+      if (type === 'error') throw new Error(results.content);
       else{
         const resultarr = results.split(",");
         if(resultarr[0] == "true"){
