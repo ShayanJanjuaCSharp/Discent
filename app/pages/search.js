@@ -94,6 +94,8 @@ return (
     </Stack>
   </AppBar>
   <Stack direction="column" justifyItems={"space-around"} alignItems={"center"} spacing={2} sx={{ marginTop: "20px" }}>
+    <TextField placeholder="Search" sx={{width:"700px", height:"100px"}}></TextField>
+    <Divider orientation="horizontal" flexItem></Divider>
     <Stack direction="column" >
     </Stack>
     </Stack>
