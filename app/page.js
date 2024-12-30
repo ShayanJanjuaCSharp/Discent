@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import Button from '@mui/material/Button';
-import { Badge, Box, Container, Divider, Stack, SvgIcon, Typography } from "@mui/material";
+import { Badge, Box, Container, Divider, Rating, Stack, SvgIcon, Typography } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import NotificationsNoneSharpIcon from '@mui/icons-material/NotificationsNoneSharp';
@@ -18,6 +18,7 @@ export default function Home() {
   const [notifExists, setNE] = useState(false);
   const [numOfNotifs, setNoN] = useState(0);
   const [uID, setuID] = useState("none"); 
+  const [courses, setCourses] = useState([]);
   const router = useRouter();
   
   useEffect(() => {
@@ -95,9 +96,25 @@ return (
   </AppBar>
   <Stack direction="column" justifyItems={"space-around"} alignItems={"center"} spacing={2} sx={{ marginTop: "20px" }}>
     <Stack direction="column" >
+      {courses.map((course) => (
+        <Button onClick={() => router.push("/"+course)}>
+          <Stack direction="column" justifyContent={"space-between"} alignItems={"center"}>
+            <Typography>{course.name}</Typography>
+            <Typography>taught by {course.teacher}</Typography>
+            <Typography>{course.description}</Typography>
+            <Stack direction="row">
+              <Rating value={course.rating} readOnly/>
+              <Badge badgeContent={course.memberCount} color="primary">
+              <AccountCircleIcon/>
+            </Badge>
+            </Stack>
+          </Stack>
+          <Divider/>
+        </Button>
+      ))}
     </Stack>
-    </Stack>
-    </Box>
+  </Stack>
+  </Box>
     
   );
 }
