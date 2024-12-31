@@ -11,7 +11,6 @@ import MessageSharpIcon from '@mui/icons-material/MessageSharp';
 import SearchSharpIcon from '@mui/icons-material/SearchSharp';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
-import TextField from '@mui/material/TextField';
 import { useRouter } from "next/navigation";
 
 export default function Home() {
@@ -19,6 +18,9 @@ export default function Home() {
   const [numOfNotifs, setNoN] = useState(0);
   const [uID, setuID] = useState("none"); 
   const [courses, setCourses] = useState([]);
+  const [course, setCourse] = useState({
+    
+  });
   const router = useRouter();
   
   useEffect(() => {

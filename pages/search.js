@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import Button from '@mui/material/Button';
-import { Badge, Box, Container, Divider, Stack, SvgIcon, Typography } from "@mui/material";
+import { Badge, Box, Container, Divider, Drawer, Stack, SvgIcon, Typography } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import NotificationsNoneSharpIcon from '@mui/icons-material/NotificationsNoneSharp';
@@ -13,12 +13,36 @@ import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import TextField from '@mui/material/TextField';
 import { useRouter } from "next/navigation";
+import Grid from '@mui/material/Grid2';
 
 export default function Home() {
   const [notifExists, setNE] = useState(false);
   const [numOfNotifs, setNoN] = useState(0);
   const [uID, setuID] = useState("none"); 
+  const [courses, setCourses] = useState([]);
+  const [course, setCourse] = useState({
+    name: "",
+    teacher: "",
+    description: "",
+    rating: 0,
+    memberCount: 0
+  });
+  const [search, setSearch] = useState("");
   const router = useRouter();
+  
+  function addCourses(){
+    const cList = //Courses you add through solidity
+    setCourses(cList);
+    sortCourses();
+  }
+
+  function searchCourses(){
+    for(let i = 0; i < courses.length; i++){
+      if(!(courses[i].name.includes(search))){
+        courses.splice(i,1);
+        i--;
+      }
+  }
   
   useEffect(() => {
     const checkNotifs = async () => {
@@ -77,29 +101,32 @@ ws.onclose = () => {
 
     
 return (
-  <Box sx={{width:"100vw", height:"100vh"}} justifyContent={"space-around"}>
-  <AppBar position="static"  color="white"  px={4} >
-    <Stack direction="row" justifyContent={"space-between"} alignItems={"center"} >
+<Grid container >
+  <Grid size = {4}>
+  <Drawer anchor="left" variant="permanent" justifyContent={"space-between"} alignItems={"left"} width={"100%"}>
+    {/*<Stack direction="column" justifyContent={"space-between"} alignItems={"center"} >*/}
     <Typography >CSS</Typography>
-    <Stack direction="row">
-      <Button variant="text"><HomeRoundedIcon/></Button>
-      <Button variant="text" onClick={() => router.push("/search") }><SearchSharpIcon/></Button>
-      <Button variant="text"><MessageSharpIcon/></Button>
+    <Stack direction="column" justifyContent={"space-between"} alignItems={"center"}>
+      <Button variant="text" onClick={() => router.push("/") }>Home <HomeRoundedIcon/></Button>
+      <Button variant="text" onClick={() => router.push("/search") }>Search <SearchSharpIcon/></Button>
+      <Button variant="text">DMs <MessageSharpIcon/></Button>
       <Badge badgeContent={numOfNotifs} color="primary">
-        <Button variant="text">{(notifExists?<NotificationsSharpIcon/>:<NotificationsNoneSharpIcon/>)}</Button>
+        <Button variant="text">Notifications {(notifExists?<NotificationsSharpIcon/>:<NotificationsNoneSharpIcon/>)}</Button>
       </Badge>
-      <Button variant="text"><AccountCircleIcon/></Button>
+      <Button variant="text">Profile <AccountCircleIcon/></Button>
     </Stack>
-    <Button><SettingsRoundedIcon/></Button>
-    </Stack>
-  </AppBar>
+    <Button>Settings <SettingsRoundedIcon/></Button>
+  </Drawer>
+  </Grid>
+  <Grid size = {4}>
   <Stack direction="column" justifyItems={"space-around"} alignItems={"center"} spacing={2} sx={{ marginTop: "20px" }}>
     <TextField placeholder="Search" sx={{width:"700px", height:"100px"}}></TextField>
     <Divider orientation="horizontal" flexItem></Divider>
     <Stack direction="column" >
     </Stack>
-    </Stack>
-    </Box>
+  </Stack>
+  </Grid>
+</Grid>
     
   );
 }
