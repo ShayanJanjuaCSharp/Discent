@@ -36,14 +36,14 @@ export default function Home() {
     sortCourses();
   }
 
-  function searchCourses(){
+  /*function searchCourses(){
     for(let i = 0; i < courses.length; i++){
       if(!(courses[i].name.includes(search))){
         courses.splice(i,1);
         i--;
       }
-  }
-  
+  }*/
+
   useEffect(() => {
     const checkNotifs = async () => {
       const response = await fetch('/api/homePageStart', {
@@ -102,8 +102,8 @@ ws.onclose = () => {
     
 return (
 <Grid container >
-  <Grid size = {4}>
-  <Drawer anchor="left" variant="permanent" justifyContent={"space-between"} alignItems={"left"} width={"100%"}>
+  <Grid size = {3}>
+  <Drawer anchor="left" variant="permanent" justifyContent={"space-between"} alignItems={"left"} PaperProps = {{sx:{width:"25vw"}}} >
     {/*<Stack direction="column" justifyContent={"space-between"} alignItems={"center"} >*/}
     <Typography >CSS</Typography>
     <Stack direction="column" justifyContent={"space-between"} alignItems={"center"}>
@@ -118,9 +118,9 @@ return (
     <Button>Settings <SettingsRoundedIcon/></Button>
   </Drawer>
   </Grid>
-  <Grid size = {4}>
+  <Grid size = {6}>
   <Stack direction="column" justifyItems={"space-around"} alignItems={"center"} spacing={2} sx={{ marginTop: "20px" }}>
-    <TextField placeholder="Search" sx={{width:"700px", height:"100px"}}></TextField>
+    <TextField placeholder="Search for courses..." value = {search} onChange={(e) => setSearch(e.target.value)} sx={{width:"700px", height:"100px"}}></TextField>
     <Divider orientation="horizontal" flexItem></Divider>
     <Stack direction="column" >
     </Stack>

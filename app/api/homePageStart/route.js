@@ -7,9 +7,9 @@ export async function POST(req){
 
     const bakery = await cookies();
     let id = await bakery.set("uID", '1');
-    id = await bakery.get("uID").value;
-   // if(!id) return NextResponse.json({type:'error',content:'no id'});
-    //id = id.value;
+    id = await bakery.get("uID");
+    if(!id) return NextResponse.json({type:'notLoggedIn',content:'false,0'});
+    id = id.value;
     console.log("id : " + id);
     var conn = await mysql.createConnection({
       host: "localhost",
@@ -26,7 +26,7 @@ export async function POST(req){
       numOfNotifs = results.length;
       return NextResponse.json({
         type:'notif',
-        content:notifExists +","+ numOfNotifs,
+        content:notifExists +","+ numOfNotifs + "," + id,
       })
     }catch(e){
       return NextResponse.json({
