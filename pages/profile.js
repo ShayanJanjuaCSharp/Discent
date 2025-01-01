@@ -13,6 +13,7 @@ import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import { useRouter } from "next/navigation";
 import Grid from '@mui/material/Grid2';
+import { useSession, signIn, signOut } from "next-auth/react"
 
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
     const [userExist, setUE] = useState(false);
     const [notifExists, setNE] = useState(false);
     const [numOfNotifs, setNoN] = useState(0);
+    const {data : session} = useSession();
 
     useEffect(() => {
         const checkNotifs = async () => {
@@ -51,9 +53,13 @@ export default function Home() {
         checkNotifs();
     },[]
     )
-return (
-    
-
-
-);
+    if(session){
+        return (
+            <Typography>hello</Typography>
+    );}
+        return(
+            <Box>
+                <Button onClick={() => signIn('google')}>Log in</Button>
+            </Box>
+    );
 }
