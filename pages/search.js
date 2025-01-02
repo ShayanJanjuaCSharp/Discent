@@ -50,6 +50,10 @@ export default function Home() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
       });
+      const re = await fetch('/api/sendemail', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      });
 
       if (!response.ok) console.log('Failed to fetch notifications');
 
@@ -70,6 +74,7 @@ export default function Home() {
       }
     };
     checkNotifs();
+    
 },[]
 )
 
@@ -103,10 +108,10 @@ ws.onclose = () => {
 return (
 <Grid container >
   <Grid size = {3}>
-  <Drawer anchor="left" variant="permanent" justifyContent={"space-between"} alignItems={"left"} PaperProps = {{sx:{width:"25vw"}}} >
+  <Drawer anchor="left" variant="permanent"  PaperProps = {{sx:{width:"25vw"}}} >
     {/*<Stack direction="column" justifyContent={"space-between"} alignItems={"center"} >*/}
     <Typography >CSS</Typography>
-    <Stack direction="column" justifyContent={"space-between"} alignItems={"center"}>
+    <Stack direction="column" justifyItems={"space-between"} alignItems={"center"}>
       <Button variant="text" onClick={() => router.push("/") }>Home <HomeRoundedIcon/></Button>
       <Button variant="text" onClick={() => router.push("/search") }>Search <SearchSharpIcon/></Button>
       <Button variant="text">DMs <MessageSharpIcon/></Button>
