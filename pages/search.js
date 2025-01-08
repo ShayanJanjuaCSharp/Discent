@@ -14,6 +14,8 @@ import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import TextField from '@mui/material/TextField';
 import { useRouter } from "next/navigation";
 import Grid from '@mui/material/Grid2';
+import { useSession, signIn, signOut } from "next-auth/react"
+
 
 export default function Home() {
   const [notifExists, setNE] = useState(false);
@@ -29,6 +31,9 @@ export default function Home() {
   });
   const [search, setSearch] = useState("");
   const router = useRouter();
+
+  const { data: session } = useSession();
+  console.log(session);
   
   function addCourses(){
     const cList = //Courses you add through solidity
@@ -72,13 +77,14 @@ export default function Home() {
           setNE(false);
         }
       }
+      console.log(session.user.email);
     };
     checkNotifs();
     
 },[]
 )
-
-
+  
+  console.log(session.user.name)
   let ws;
   if(ws){
     ws.onerror = ws.onopen = ws.onclose = ws.onmessage = null;

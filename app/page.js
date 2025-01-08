@@ -12,12 +12,15 @@ import SearchSharpIcon from '@mui/icons-material/SearchSharp';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import { useRouter } from "next/navigation";
+import { useSession, signIn, signOut } from "next-auth/react"
+
 
 export default function Home() {
   const [notifExists, setNE] = useState(false);
   const [numOfNotifs, setNoN] = useState(0);
   const [uID, setuID] = useState("none"); 
   const [courses, setCourses] = useState([]);
+  const {data : session} = useSession();
   const [course, setCourse] = useState({
     
   });
@@ -52,7 +55,7 @@ export default function Home() {
 },[]
 )
 
-
+  console.log(session);
   let ws;
   if(ws){
     ws.onerror = ws.onopen = ws.onclose = ws.onmessage = null;
@@ -83,7 +86,7 @@ return (
   <Box sx={{width:"100vw", height:"100vh"}} justifyContent={"space-around"}>
   <AppBar position="static"  color="white"  px={4} >
     <Stack direction="row" justifyContent={"space-between"} alignItems={"center"} >
-    <Typography >CSS</Typography>
+    <Typography >css</Typography>
     <Stack direction="row">
       <Button variant="text"><HomeRoundedIcon/></Button>
       <Button variant="text" onClick={() => router.push("/search") }><SearchSharpIcon/></Button>
@@ -99,7 +102,7 @@ return (
   <Stack direction="column" justifyItems={"space-around"} alignItems={"center"} spacing={2} sx={{ marginTop: "20px" }}>
     <Stack direction="column" >
       {courses.map((course) => (
-        <Button onClick={() => router.push("/"+course)}>
+        <Button onClick={() => router.push("/course")}>
           <Stack direction="column" justifyContent={"space-between"} alignItems={"center"}>
             <Typography>{course.name}</Typography>
             <Typography>taught by {course.teacher}</Typography>

@@ -23,6 +23,7 @@ export default function Home() {
     const [numOfNotifs, setNoN] = useState(0);
     const {data : session} = useSession();
 
+    
     useEffect(() => {
         const checkNotifs = async () => {
         const response = await fetch('/api/homePageStart', {
@@ -55,7 +56,7 @@ export default function Home() {
     )
     if(session){
         return (
-            <Typography>hello</Typography>
+            <Typography>hello + {session.user.name}</Typography>
     );}
         return(
             <Box>
