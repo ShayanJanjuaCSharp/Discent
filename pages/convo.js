@@ -52,6 +52,8 @@ export default function Home() {
     checkNotifs();
 },[]
 )*/
+
+/*
 const websocket = new WebSocket(
     'wss://websocket-database-pinging-production.up.railway.app'
 );
@@ -72,7 +74,7 @@ websocket.onerror = (err) => {
 websocket.onclose = () => {
     console.log('WebSocket connection closed');
 };
-
+*/
 
 const checkRecieved = async (msg) => {
     const msgParts = msg.data.split(',');

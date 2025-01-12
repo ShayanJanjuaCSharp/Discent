@@ -155,7 +155,7 @@ export default function Home() {
 )
   
 
-  let ws;
+ /* let ws;
   if(ws){
     ws.onerror = ws.onopen = ws.onclose = ws.onmessage = null;
   }
@@ -178,7 +178,7 @@ ws.onclose = () => {
 
 ws.onclose = () => {
   ws = null;
-}   
+}   */
 
     
 return (

@@ -54,7 +54,7 @@ useEffect(() => {
 },[]
 )
 
-  useEffect(() => {
+ /* useEffect(() => {
     const websocket = new WebSocket(
       'wss://websocket-database-pinging-production.up.railway.app'
     );
@@ -81,7 +81,7 @@ useEffect(() => {
     return () => {
       websocket.close();
     };
-  }, []);
+  }, []);*/
 const handleConvo = (DM) => async () => {
     const r = await fetch('/api/setDM', {
         method: 'POST',

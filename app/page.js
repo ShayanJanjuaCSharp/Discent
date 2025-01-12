@@ -54,7 +54,7 @@ export default function Home() {
     checkNotifs();
 },[]
 )
-
+/*
   console.log(session);
   let ws;
   if(ws){
@@ -79,7 +79,7 @@ ws.onclose = () => {
 
 ws.onclose = () => {
   ws = null;
-}   
+}   */
 
 const handleCourse = async (name, teacher)  => {
   const r = await fetch('/api/setCourseName', {

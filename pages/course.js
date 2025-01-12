@@ -94,7 +94,7 @@ useEffect(() => {
     checkNotifs();
 },[]
 )
-
+/*
 console.log(session);
 let ws;
 if(ws){
@@ -119,9 +119,9 @@ ws.onclose = () => {
 
 ws.onclose = () => {
     ws = null;
-}   
+}   */
 const handleCourse = async (name, teacher) => {
-    
+
 }
     
 return (
