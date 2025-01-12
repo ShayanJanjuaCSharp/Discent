@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.13.5",
     "@mui/icons-material": "^6.1.10",
     "@mui/material": "^6.1.10",
+    "ethers": "^6.13.5",
     "install": "^0.13.0",
     "mysql": "^2.18.1",
     "mysql2": "^3.12.0",

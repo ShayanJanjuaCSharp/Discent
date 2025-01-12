@@ -120,7 +120,9 @@ ws.onclose = () => {
 ws.onclose = () => {
     ws = null;
 }   
-
+const handleCourse = async (name, teacher) => {
+    
+}
     
 return (
     <Box sx={{width:"100vw", height:"100vh"}} justifyContent={"space-around"}>
@@ -146,11 +148,12 @@ return (
     <br/><br/>
     <Typography variant="body1" >{course.desc}</Typography>
     <Stack direction="row" spacing={2}>
-    <Badge badgeContent={course.mc} color={val}>
-    <AccountCircleIcon color="primary"/>
+    <Badge badgeContent={course.mc} color="success">
+    <AccountCircleIcon sx ={{color:val}}/>
     </Badge>
     </Stack>
 </Stack>
+<Button onClick={() => handleCourse(course.name, course.teacher)}>Join</Button>
 </Box>
 );
 }

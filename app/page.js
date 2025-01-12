@@ -81,6 +81,15 @@ ws.onclose = () => {
   ws = null;
 }   
 
+const handleCourse = async (name, teacher)  => {
+  const r = await fetch('/api/setCourseName', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({name: name, teacher: teacher})
+  })
+  router.push("/course");
+}
+
     
 return (
   <Box sx={{width:"100vw", height:"100vh"}} justifyContent={"space-around"}>
@@ -102,7 +111,7 @@ return (
   <Stack direction="column" justifyItems={"space-around"} alignItems={"center"} spacing={2} sx={{ marginTop: "20px" }}>
     <Stack direction="column" >
       {courses.map((course) => (
-        <Button onClick={() => router.push("/course")}>
+        <Button onClick={handleCourse(course.name, course.teacher)}>
           <Stack direction="column" justifyContent={"space-between"} alignItems={"center"}>
             <Typography>{course.name}</Typography>
             <Typography>taught by {course.teacher}</Typography>

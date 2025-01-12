@@ -4,13 +4,10 @@ import mysql from 'mysql2/promise'
 
 
 export async function POST(req){
-
-    const bakery = await cookies();
-    let id = await bakery.set("uID", '1');
-    id = await bakery.get("uID");
-    if(!id) return NextResponse.json({type:'notLoggedIn',content:'false,0'});
-    id = id.value;
-    console.log("id : " + id);
+  const bakery = await cookies();
+    const id = bakery.get("user").value;
+    console.log(id);
+    
     var conn = await mysql.createConnection({
       host: "localhost",
       user: "root",
@@ -19,7 +16,7 @@ export async function POST(req){
       port: 3306
     })
     try{
-      const [results, fields] = await conn.query('SELECT * FROM notif WHERE username = ' + id);
+      const [results, fields] = await conn.query("SELECT * FROM notif WHERE username = '" + id + "';");
       let notifExists, numOfNotifs;
       if(results.length > 0) notifExists = true;
       else notifExists = false;

@@ -49,6 +49,16 @@ export default function Home() {
       }
   }*/
 
+      const handleCourse = async (name, teacher)  => {
+        const r = await fetch('/api/setCourseName', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({name: name, teacher: teacher})
+        })
+        router.push("/course");
+      }
+      
+
   useEffect(() => {
     const checkNotifs = async () => {
       const response = await fetch('/api/homePageStart', {
@@ -77,14 +87,11 @@ export default function Home() {
           setNE(false);
         }
       }
-      console.log(session.user.email);
     };
     checkNotifs();
     
 },[]
 )
-  
-  console.log(session.user.name)
   let ws;
   if(ws){
     ws.onerror = ws.onopen = ws.onclose = ws.onmessage = null;
@@ -134,6 +141,22 @@ return (
     <TextField placeholder="Search for courses..." value = {search} onChange={(e) => setSearch(e.target.value)} sx={{width:"700px", height:"100px"}}></TextField>
     <Divider orientation="horizontal" flexItem></Divider>
     <Stack direction="column" >
+    {courses.map((course) => (
+        <Button onClick={handleCourse(course.name, course.teacher)}>
+          <Stack direction="column" justifyContent={"space-between"} alignItems={"center"}>
+            <Typography>{course.name}</Typography>
+            <Typography>taught by {course.teacher}</Typography>
+            <Typography>{course.description}</Typography>
+            <Stack direction="row">
+              <Rating value={course.rating} readOnly/>
+              <Badge badgeContent={course.memberCount} color="primary">
+              <AccountCircleIcon/>
+            </Badge>
+            </Stack>
+          </Stack>
+          <Divider/>
+        </Button>
+      ))}
     </Stack>
   </Stack>
   </Grid>

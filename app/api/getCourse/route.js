@@ -1,7 +1,6 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import mysql from 'mysql2/promise'
-import { Description } from "@mui/icons-material";
 
 
 export async function GET(req){
