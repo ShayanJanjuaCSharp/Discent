@@ -89,17 +89,6 @@ const checkRecieved = async (msg) => {
     }
 };
 
-const handleConvo = (DM) => async () => {
-    const r = await fetch('/api/setDM', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          convoID: DM.convoID
-        })
-    })
-    setMessage(DM);
-    await router.push('/convo');
-}
 useEffect(() => {
   if (!session?.user?.name) return;
 

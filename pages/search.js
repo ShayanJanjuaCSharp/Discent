@@ -180,7 +180,18 @@ ws.onclose = () => {
   ws = null;
 }   */
 
-    
+  
+  const joinCourse = async (name, teacher) => {
+    const r = await fetch('/api/joinCourse', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: name,
+        teacher: teacher
+      })
+    })
+    router.push("/dms");
+  }
 return (
   <>
 <Grid container >
@@ -305,7 +316,7 @@ return (
                     </p>
                   </div>
                 </CardContent>
-                    <Button variant="outline">
+                    <Button variant="outline" onClick={() => joinCourse(course.name, course.teacher)}>
                       JOIN
                     </Button>
                   <br></br>
