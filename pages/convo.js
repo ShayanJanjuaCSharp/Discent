@@ -201,7 +201,7 @@ const sendMessage = async () => {
   })
   setMessage("");
   checkDMs();
-  const u = await fetch('/api/getuser', {
+  /*const u = await fetch('/api/getuser', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
   })
@@ -213,7 +213,7 @@ const sendMessage = async () => {
   const tcontent = await t.json();
   const user = u.content;
   const target = t.content;
-  websocket.send(user + ',' + target + ',' + message );
+  websocket.send(user + ',' + target + ',' + message );*/
 
 }
 

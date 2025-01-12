@@ -24,7 +24,7 @@ export default function Home() {
     const {data : session} = useSession();
 
     
-    useEffect(() => {
+    /*useEffect(() => {
         const checkNotifs = async () => {
         const response = await fetch('/api/homePageStart', {
             method: 'POST',
@@ -53,7 +53,7 @@ export default function Home() {
         };
         checkNotifs();
     },[]
-    )
+    )*/
     if(session){
         return (
             <Typography>hello + {session.user.name}</Typography>

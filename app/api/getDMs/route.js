@@ -6,7 +6,7 @@ export async function  POST(req){
     var conn = await mysql.createConnection({
         host: "localhost",
         user: "root",
-        password: "shayan",
+        password: process.env.MYSQL_PASSWORD,
         database: "css",
         port: 3306
     })
